@@ -25,16 +25,6 @@ import fcb.de.fcbayernemotions.model.EmotionModel;
 public class CardFragment extends Fragment {
     ArrayList<EmotionModel> listitems = new ArrayList<>();
     RecyclerView MyRecyclerView;
-    String timeStrings[] = {"17'","32'","42'","51'","66'","78'","89'"};
-    String extraStrings[] = {"","#MiaSanMia super Bayern!","","Awesome goal Müller #FCB","","",""};
-    int images[] = {
-            R.drawable.fan_background,
-            R.drawable.fan_background,
-            R.drawable.fan_background,
-            R.drawable.fan_background,
-            R.drawable.fan_background,
-            R.drawable.fan_background,
-            R.drawable.fan_background};
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -161,15 +151,8 @@ public class CardFragment extends Fragment {
     public void initializeList() {
         listitems.clear();
 
-        for(int i =0;i<7;i++){
-            EmotionModel item = new EmotionModel();
-            item.setTimeString(timeStrings[i]);
-            item.setExtraText(extraStrings[i]);
-            item.setImageResourceId(images[i]);
-            item.setIsfav(0);
-            item.setIsturned(0);
-            listitems.add(item);
-        }
-
+        listitems.add(new EmotionModel("13'", "#MiaSanMia super Bayern!", R.drawable.fan_background));
+        listitems.add(new EmotionModel("42'", "", R.drawable.fan_background));
+        listitems.add(new EmotionModel("64'", "Awesome goal at #AllianzArena in #Munich by Müller #FCB #FCBayern", R.drawable.fan_background));
     }
 }

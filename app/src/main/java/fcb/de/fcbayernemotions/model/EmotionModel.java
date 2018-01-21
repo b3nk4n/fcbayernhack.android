@@ -5,11 +5,17 @@ package fcb.de.fcbayernemotions.model;
  */
 public class EmotionModel {
 
-    String timeString;
-    String extraText;
-    int imageResourceId;
-    int isfav;
-    int isturned;
+    private String timeString;
+    private String extraText;
+    private int imageResourceId;
+    private int isfav;
+    private int isturned;
+
+    public EmotionModel(String time, String extra, int imageResourceId) {
+        setTimeString(time);
+        setExtraText(extra);
+        setImageResourceId(imageResourceId);
+    }
 
     public int getIsturned() {
         return isturned;
