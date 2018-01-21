@@ -21,6 +21,7 @@ public class TopEmotionsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_emotions);
+        setTitle("Top Fan Emotions");
 
         videoView = findViewById(R.id.videoView);
         videoUriList.add(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.fan01));
