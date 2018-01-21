@@ -5,16 +5,22 @@ package fcb.de.fcbayernemotions.model;
  */
 public class EmotionModel {
 
+    public enum ResourceType {
+        IMG, GIF
+    }
+
     private String timeString;
     private String extraText;
-    private int imageResourceId;
+    private int resourceId;
+    private ResourceType resourceType;
     private int isfav;
     private int isturned;
 
-    public EmotionModel(String time, String extra, int imageResourceId) {
+    public EmotionModel(String time, String extra, int resId, ResourceType resType) {
         setTimeString(time);
         setExtraText(extra);
-        setImageResourceId(imageResourceId);
+        setResourceId(resId);
+        setResourceType(resType);
     }
 
     public int getIsturned() {
@@ -53,11 +59,19 @@ public class EmotionModel {
         return this.extraText != null && !this.extraText.equals("");
     }
 
-    public int getImageResourceId() {
-        return imageResourceId;
+    public int getResourceId() {
+        return resourceId;
     }
 
-    public void setImageResourceId(int imageResourceId) {
-        this.imageResourceId = imageResourceId;
+    public void setResourceId(int resourceId) {
+        this.resourceId = resourceId;
+    }
+
+    public ResourceType getResourceType() {
+        return resourceType;
+    }
+
+    public void setResourceType(ResourceType resourceType) {
+        this.resourceType = resourceType;
     }
 }

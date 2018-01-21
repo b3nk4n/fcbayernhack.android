@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 import fcb.de.fcbayernemotions.R;
@@ -80,8 +82,14 @@ public class CardFragment extends Fragment {
             if (!model.hasExtraText()) {
                 holder.extraTextView.setVisibility(View.GONE);
             }
-            holder.coverImageView.setImageResource(model.getImageResourceId());
-            holder.coverImageView.setTag(model.getImageResourceId());
+            if (model.getResourceType() == EmotionModel.ResourceType.IMG) {
+                holder.coverImageView.setImageResource(model.getResourceId());
+                holder.coverImageView.setTag(model.getResourceId());
+            } else {
+                Glide.with(getActivity()).asGif().load(model.getResourceId())
+                        .into(holder.coverImageView);
+            }
+
             holder.likeImageView.setTag(R.drawable.ic_favorite_border_black_24dp);
         }
 
@@ -151,8 +159,11 @@ public class CardFragment extends Fragment {
     public void initializeList() {
         listitems.clear();
 
-        listitems.add(new EmotionModel("13'", "#MiaSanMia super Bayern!", R.drawable.fan_background));
-        listitems.add(new EmotionModel("42'", "", R.drawable.fan_background));
-        listitems.add(new EmotionModel("64'", "Awesome goal at #AllianzArena in #Munich by Müller #FCB #FCBayern", R.drawable.fan_background));
+        listitems.add(new EmotionModel("13'", "#MiaSanMia super Bayern!",
+                R.drawable.fan_background, EmotionModel.ResourceType.IMG));
+        listitems.add(new EmotionModel("42'", "",
+                R.raw.test, EmotionModel.ResourceType.GIF));
+        listitems.add(new EmotionModel("64'", "Awesome goal at #AllianzArena in #Munich by Müller #FCB #FCBayern",
+                R.drawable.fan_background, EmotionModel.ResourceType.IMG));
     }
 }
