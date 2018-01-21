@@ -3,10 +3,13 @@ package fcb.de.fcbayernemotions.notification;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 
+import fcb.de.fcbayernemotions.MainActivity;
 import fcb.de.fcbayernemotions.R;
 
 public class SimpleNotification {
@@ -44,12 +47,23 @@ public class SimpleNotification {
         } else {
             nb  = new Notification.Builder(context);
         }
+
+        PendingIntent intent = getPendingIntent();
         Notification notification = nb.setContentTitle("FCB Emotions")
                 .setContentText(content)
                 .setSmallIcon(R.mipmap.fcb_logo)
+                .setContentIntent(intent)
                 .setAutoCancel(true).build();
 
         notificationManager.notify(id, notification);
+    }
+
+    private PendingIntent getPendingIntent() {
+        Intent notificationIntent = new Intent(context, MainActivity.class);
+        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        return PendingIntent.getActivity(context, 0,
+                notificationIntent, 0);
     }
 }
 
