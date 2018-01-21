@@ -5,7 +5,8 @@ package fcb.de.fcbayernemotions.model;
  */
 public class EmotionModel {
 
-    String cardName;
+    String timeString;
+    String extraText;
     int imageResourceId;
     int isfav;
     int isturned;
@@ -26,12 +27,24 @@ public class EmotionModel {
         this.isfav = isfav;
     }
 
-    public String getCardName() {
-        return cardName;
+    public String getTimeString() {
+        return timeString;
     }
 
-    public void setCardName(String cardName) {
-        this.cardName = cardName;
+    public void setTimeString(String timeString) {
+        this.timeString = timeString;
+    }
+
+    public String getExtraText() {
+        return extraText;
+    }
+
+    public void setExtraText(String extraText) {
+        this.extraText = extraText;
+    }
+
+    public boolean hasExtraText() {
+        return this.extraText != null && !this.extraText.equals("");
     }
 
     public int getImageResourceId() {

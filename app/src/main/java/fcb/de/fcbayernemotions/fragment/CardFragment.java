@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -26,7 +25,8 @@ import fcb.de.fcbayernemotions.model.EmotionModel;
 public class CardFragment extends Fragment {
     ArrayList<EmotionModel> listitems = new ArrayList<>();
     RecyclerView MyRecyclerView;
-    String wonders[] = {"17'","32'","42'","51'","66'","78'","89'"};
+    String timeStrings[] = {"17'","32'","42'","51'","66'","78'","89'"};
+    String extraStrings[] = {"","#MiaSanMia super Bayern!","","Awesome goal Müller #FCB","","",""};
     int images[] = {
             R.drawable.fan_background,
             R.drawable.fan_background,
@@ -84,11 +84,15 @@ public class CardFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(final MyViewHolder holder, int position) {
-
-            holder.titleTextView.setText(list.get(position).getCardName());
-            holder.coverImageView.setImageResource(list.get(position).getImageResourceId());
-            holder.coverImageView.setTag(list.get(position).getImageResourceId());
-            holder.likeImageView.setTag(R.drawable.ic_thumb_up_black_24dp);
+            EmotionModel model = list.get(position);
+            holder.titleTextView.setText(model.getTimeString());
+            holder.extraTextView.setText(model.getExtraText());
+            if (!model.hasExtraText()) {
+                holder.extraTextView.setVisibility(View.GONE);
+            }
+            holder.coverImageView.setImageResource(model.getImageResourceId());
+            holder.coverImageView.setTag(model.getImageResourceId());
+            holder.likeImageView.setTag(R.drawable.ic_favorite_border_black_24dp);
         }
 
         @Override
@@ -100,31 +104,30 @@ public class CardFragment extends Fragment {
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         public TextView titleTextView;
+        public TextView extraTextView;
         public ImageView coverImageView;
         public ImageView likeImageView;
         public ImageView shareImageView;
+        public ImageView commentImageView;
 
         public MyViewHolder(View v) {
             super(v);
             titleTextView = (TextView) v.findViewById(R.id.titleTextView);
+            extraTextView = (TextView) v.findViewById(R.id.extraTextView);
             coverImageView = (ImageView) v.findViewById(R.id.coverImageView);
             likeImageView = (ImageView) v.findViewById(R.id.likeImageView);
             shareImageView = (ImageView) v.findViewById(R.id.shareImageView);
+            commentImageView = (ImageView) v.findViewById(R.id.commentImageView);
             likeImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int id = (int)likeImageView.getTag();
-                    if( id == R.drawable.ic_thumb_up_black_24dp){
-
-                        likeImageView.setTag(R.drawable.ic_thumb_up_black_24dp);
-                        likeImageView.setImageResource(R.drawable.ic_thumb_up_black_24dp);
-
-                        Toast.makeText(getActivity(),titleTextView.getText()+" added to favourites",Toast.LENGTH_SHORT).show();
+                    if( id == R.drawable.ic_favorite_border_black_24dp){
+                        likeImageView.setTag(R.drawable.ic_favorite_black_24dp);
+                        likeImageView.setImageResource(R.drawable.ic_favorite_black_24dp);
                     }else{
-                        // TODO use other icon for unliked image
-                        likeImageView.setTag(R.drawable.ic_thumb_up_black_24dp);
-                        likeImageView.setImageResource(R.drawable.ic_thumb_up_black_24dp);
-                        Toast.makeText(getActivity(),titleTextView.getText()+" removed from favourites",Toast.LENGTH_SHORT).show();
+                        likeImageView.setTag(R.drawable.ic_favorite_border_black_24dp);
+                        likeImageView.setImageResource(R.drawable.ic_favorite_border_black_24dp);
                     }
                 }
             });
@@ -137,12 +140,19 @@ public class CardFragment extends Fragment {
                             "://" + getResources().getResourcePackageName(coverImageView.getId())
                             + '/' + "drawable" + '/' + getResources().getResourceEntryName((int)coverImageView.getTag()));
 
-
                     Intent shareIntent = new Intent();
                     shareIntent.setAction(Intent.ACTION_SEND);
                     shareIntent.putExtra(Intent.EXTRA_STREAM,imageUri);
                     shareIntent.setType("image/jpeg");
                     startActivity(Intent.createChooser(shareIntent, getResources().getText(R.string.send_to)));
+                }
+            });
+
+            shareImageView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    // TODO implement Comment dialog/activity
                 }
             });
         }
@@ -152,15 +162,13 @@ public class CardFragment extends Fragment {
         listitems.clear();
 
         for(int i =0;i<7;i++){
-
-
             EmotionModel item = new EmotionModel();
-            item.setCardName(wonders[i]);
+            item.setTimeString(timeStrings[i]);
+            item.setExtraText(extraStrings[i]);
             item.setImageResourceId(images[i]);
             item.setIsfav(0);
             item.setIsturned(0);
             listitems.add(item);
-
         }
 
     }
