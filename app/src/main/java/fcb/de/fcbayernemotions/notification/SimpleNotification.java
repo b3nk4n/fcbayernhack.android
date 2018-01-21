@@ -21,7 +21,7 @@ public class SimpleNotification {
         notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        createChannel(CHANNEL_ID, "FCB Emotions", "Müller scored 1:0 against Bremen.\nThe world is freaking out!");
+        createChannel(CHANNEL_ID, "FCB Emotions", "Channel description");
     }
 
     private void createChannel(String id, String name, String description) {
