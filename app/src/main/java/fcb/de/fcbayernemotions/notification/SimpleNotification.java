@@ -52,7 +52,7 @@ public class SimpleNotification {
         PendingIntent intent = getPendingIntent();
         Notification notification = nb.setContentTitle("FCB Emotions")
                 .setContentText(content)
-                .setSmallIcon(R.mipmap.fcb_logo)
+                .setSmallIcon(R.mipmap.fcb_logo_bw)
                 .setContentIntent(intent)
                 .setAutoCancel(true).build();
 
