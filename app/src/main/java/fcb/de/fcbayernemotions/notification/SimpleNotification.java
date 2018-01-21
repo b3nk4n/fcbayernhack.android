@@ -11,6 +11,7 @@ import android.os.Build;
 
 import fcb.de.fcbayernemotions.MainActivity;
 import fcb.de.fcbayernemotions.R;
+import fcb.de.fcbayernemotions.TopEmotionsActivity;
 
 public class SimpleNotification {
 
@@ -59,7 +60,7 @@ public class SimpleNotification {
     }
 
     private PendingIntent getPendingIntent() {
-        Intent notificationIntent = new Intent(context, MainActivity.class);
+        Intent notificationIntent = new Intent(context, TopEmotionsActivity.class);
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                 | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         return PendingIntent.getActivity(context, 0,
