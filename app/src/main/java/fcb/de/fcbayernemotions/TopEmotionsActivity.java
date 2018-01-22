@@ -26,8 +26,6 @@ public class TopEmotionsActivity extends AppCompatActivity {
         videoView = findViewById(R.id.videoView);
         videoUriList.add(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.fan01));
         videoUriList.add(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.fan02));
-        videoUriList.add(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.fan03));
-        videoUriList.add(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.fan04));
         videoUriList.add(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.fan05));
 
         videoView.setDrawingCacheEnabled(true);
