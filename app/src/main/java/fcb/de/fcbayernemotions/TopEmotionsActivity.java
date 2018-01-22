@@ -48,7 +48,7 @@ public class TopEmotionsActivity extends AppCompatActivity {
                 if (playingIndex == videoUriList.size()) {
                     // we are done, navigate to the reaction list.
                     Intent intent = new Intent(TopEmotionsActivity.this,
-                            EmotionListActivity.class);
+                            MainActivity.class);
                     startActivity(intent);
                 } else {
                     // show the next video

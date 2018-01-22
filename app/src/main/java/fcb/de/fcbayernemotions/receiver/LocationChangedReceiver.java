@@ -23,6 +23,6 @@ public class LocationChangedReceiver extends BroadcastReceiver {
             e.printStackTrace();
         }
 
-        simpleNotification.show(1, "Müller scored 1:0 against Bremen.\nThe world is freaking out!");
+        simpleNotification.show(1, "Müller scored 4:2 against Bremen.\nThe world is freaking out!");
     }
 }

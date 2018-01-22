@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import fcb.de.fcbayernemotions.R;
 import fcb.de.fcbayernemotions.model.EmotionModel;
@@ -84,7 +85,7 @@ public class CardFragment extends Fragment {
             }
             if (model.getResourceType() == EmotionModel.ResourceType.IMG) {
                 holder.coverImageView.setImageResource(model.getResourceId());
-                holder.coverImageView.setTag(model.getResourceId());
+                //holder.coverImageView.setTag(model.getResourceId());
             } else {
                 Glide.with(getActivity()).asGif().load(model.getResourceId())
                         .into(holder.coverImageView);
@@ -121,10 +122,10 @@ public class CardFragment extends Fragment {
                 public void onClick(View v) {
                     int id = (int)likeImageView.getTag();
                     if( id == R.drawable.ic_favorite_border_black_24dp){
-                        likeImageView.setTag(R.drawable.ic_favorite_black_24dp);
+                        //likeImageView.setTag(R.drawable.ic_favorite_black_24dp);
                         likeImageView.setImageResource(R.drawable.ic_favorite_black_24dp);
                     }else{
-                        likeImageView.setTag(R.drawable.ic_favorite_border_black_24dp);
+                        //likeImageView.setTag(R.drawable.ic_favorite_border_black_24dp);
                         likeImageView.setImageResource(R.drawable.ic_favorite_border_black_24dp);
                     }
                 }
@@ -159,11 +160,27 @@ public class CardFragment extends Fragment {
     public void initializeList() {
         listitems.clear();
 
-        listitems.add(new EmotionModel("13'", "#MiaSanMia super Bayern!",
-                R.drawable.fan_background, EmotionModel.ResourceType.IMG));
-        listitems.add(new EmotionModel("42'", "",
+        listitems.add(new EmotionModel("41'", "",
+                R.raw.mueller_03, EmotionModel.ResourceType.IMG));
+        listitems.add(new EmotionModel("42'", "Mümümümüller! #FCBayern #SuperBayern hey hey! #MiaSanMia",
+                R.raw.fans2, EmotionModel.ResourceType.GIF));
+        listitems.add(new EmotionModel("63'", "",
+                R.raw.lewandowski_05, EmotionModel.ResourceType.IMG));
+        listitems.add(new EmotionModel("63'", "Lewandowski for #FCBayern wuhuuu! Nordkurve is freaking out! #MiaSanMia",
+                R.raw.fans, EmotionModel.ResourceType.GIF));
+        listitems.add(new EmotionModel("76'", "",
+                R.raw.lewandowski_06, EmotionModel.ResourceType.IMG));
+        listitems.add(new EmotionModel("41'", "Muueeeeller! #Muueeeeller! #FCBayernHackDays #AllianzArena FCBayernHackDays #AllianzArena #FCB #MiaSanMia",
+                R.raw.goal1, EmotionModel.ResourceType.GIF));
+        listitems.add(new EmotionModel("84'", "",
+                R.raw.muller_07, EmotionModel.ResourceType.IMG));
+        listitems.add(new EmotionModel("84'", "",
+                R.raw.mueller2meme, EmotionModel.ResourceType.IMG));
+        listitems.add(new EmotionModel("85'", "",
                 R.raw.test, EmotionModel.ResourceType.GIF));
-        listitems.add(new EmotionModel("64'", "Awesome goal at #AllianzArena in #Munich by Müller #FCB #FCBayern",
-                R.drawable.fan_background, EmotionModel.ResourceType.IMG));
+        listitems.add(new EmotionModel("86'", "Goooooooaaaaal! #FCBayernHackDays #AllianzArena #FCB #MiaSanMia",
+                R.raw.goal3, EmotionModel.ResourceType.GIF));
+
+        Collections.reverse(listitems);
     }
 }
